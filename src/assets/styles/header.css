@@ -1,0 +1,59 @@
+.header {
+  background: #373b53;
+  padding-right: 24px;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 72px;
+}
+
+.logo-container {
+  background: #7c5dfa;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  border-radius: 0 20px 20px 0;
+  position: relative;
+}
+
+.logo-container img {
+  z-index: 99;
+}
+
+.logo-background {
+  width: 100%;
+  background: #9277ff;
+  height: 50%;
+  position: absolute;
+  right: 0;
+  left: 0;
+  border-radius: 20px 0 20px 0;
+  bottom: 0;
+}
+
+.imgs-container {
+  display: flex;
+}
+
+.moon-container {
+  margin-right: 24px;
+  border-right: 1px solid #494e6e;
+  padding-right: 24px;
+  align-items: center;
+  display: flex;
+}
+
+.avatar-container {
+  display: flex;
+  align-items: center;
+  height: 72px;
+}
+
+.avatar-container img {
+  width: 32px;
+  border-radius: 32px;
+}

@@ -1,0 +1,22 @@
+:root {
+  --purple: #7c5dfa;
+  --purlple-light: #9277ff;
+  --blue-dark: #1e2139;
+  --blue-light: #252945;
+  --gray-light: #dfe3fa;
+  --gray: #888eb0;
+  --gray-dark: #7e88c3;
+  --black: #0c0e16;
+  --red: #ec5757;
+  --red-light: #ff9797;
+  --white: #f8f8fb;
+  --black-light: #141625;
+}
+
+body {
+  margin: 0;
+  font-family: "Spartan", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+}
