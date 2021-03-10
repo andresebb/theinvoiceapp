@@ -20,3 +20,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
 }
+
+.btn {
+  height: 48px;
+  font-size: 12px;
+  font-weight: bold;
+  border: none;
+  color: #7e88c3;
+  border-radius: 24px;
+  background: #f9fafe;
+}
