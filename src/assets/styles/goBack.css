@@ -1,0 +1,14 @@
+.go-back {
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  margin-bottom: 24px;
+}
+
+.go-back p {
+  font-size: 12px;
+  font-weight: bold;
+  color: #0c0e16;
+  margin: 0;
+  margin-left: 24px;
+}

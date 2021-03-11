@@ -3,10 +3,12 @@ import "../assets/styles/newInvocie.css";
 import Calendar from "../assets/images/icon-calendar.svg";
 import ArrowDown from "../assets/images/icon-arrow-down.svg";
 import DeleteIcon from "../assets/images/icon-delete.svg";
+import GoBack from "./GoBack";
 
 const NewInvoice = () => {
   return (
     <>
+      <GoBack />
       <div className="new-invoice">
         <h2 className="title">New Invoice</h2>
         <div className="bill-from">
