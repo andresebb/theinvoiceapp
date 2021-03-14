@@ -1,16 +1,16 @@
 import React from "react";
-import "../assets/styles/newInvocie.css";
+import "../assets/styles/newInvoice.css";
 import Calendar from "../assets/images/icon-calendar.svg";
 import ArrowDown from "../assets/images/icon-arrow-down.svg";
 import DeleteIcon from "../assets/images/icon-delete.svg";
-import GoBack from "./GoBack";
+import GoBack from "../components/GoBack";
 
-const NewInvoice = () => {
+const New = () => {
   return (
     <>
-      <GoBack />
       <div className="new-invoice">
-        <h2 className="title">New Invoice</h2>
+        <GoBack />
+        <h2 className="title">Edit #XM9141</h2>
         <div className="bill-from">
           <h4 className="purple">Bill From</h4>
           <div className="block">
@@ -107,13 +107,13 @@ const NewInvoice = () => {
         </div>
         <button className="btn-large">+ Add New Item</button>
       </div>
-      <div className="option">
-        <button className="btn">Discard</button>
-        <button className="btn black">Save as Draf</button>
-        <button className="btn morado">Save & Send</button>
+      <div className="option tres">
+        <div></div>
+        <button className="btn ">Cancel</button>
+        <button className="btn morado">Save Changes</button>
       </div>
     </>
   );
 };
 
-export default NewInvoice;
+export default New;

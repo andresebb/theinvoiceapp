@@ -1,0 +1,17 @@
+.option {
+  display: grid;
+  grid-template-columns: 28% 33% 33%;
+  grid-gap: 3%;
+  padding: 24px;
+  box-shadow: 0px -16px 56px 10px #dbdbdb;
+}
+
+.btn.black {
+  background: #373b53;
+  color: #888eb0;
+}
+
+.btn.morado {
+  background: #7c5dfa;
+  color: white;
+}

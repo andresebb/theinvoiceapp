@@ -1,0 +1,46 @@
+.total-box {
+  background: red;
+  border-radius: 8px;
+  background: #f9fafe;
+}
+
+.total-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding: 0 24px;
+}
+
+.info-black {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.grand-total {
+  background: #373b53;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+}
+
+.grand-total-text {
+  font-size: 11px;
+}
+
+.grand-total-number {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.total-item .info-text-bold {
+  margin: 0;
+}
+
+.grand-total {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}

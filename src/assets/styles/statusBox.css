@@ -1,0 +1,33 @@
+.status-box {
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 24px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+}
+
+.punto {
+  height: 8px;
+  width: 8px;
+  background: #ff8f00;
+  border-radius: 12px;
+}
+
+.status {
+  background: #ff910015;
+  color: #ff8f00;
+  padding: 14px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.status p {
+  margin: 0;
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: 8px;
+}

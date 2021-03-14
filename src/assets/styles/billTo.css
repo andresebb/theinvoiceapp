@@ -1,0 +1,10 @@
+.input-img {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-img img {
+  position: absolute;
+  right: 16px;
+}

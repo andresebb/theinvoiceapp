@@ -3,7 +3,7 @@ import "../assets/styles/invoice.css";
 import ArrowDown from "../assets/images/icon-arrow-down.svg";
 import PlusIcon from "../assets/images/icon-plus.svg";
 
-const Invoice = () => {
+const CreateFilter = () => {
   return (
     <div className="invoice">
       <div className="invoice-container">
@@ -28,4 +28,4 @@ const Invoice = () => {
   );
 };
 
-export default Invoice;
+export default CreateFilter;

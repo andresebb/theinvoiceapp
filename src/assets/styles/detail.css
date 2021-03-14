@@ -1,0 +1,77 @@
+.detail-container {
+  background: white;
+  padding: 24px;
+}
+
+.info-text {
+  font-size: 12px;
+  letter-spacing: -0.25px;
+  color: #7e88c3;
+}
+
+.detail-number {
+  margin-bottom: 30px;
+}
+
+.detail-number p {
+  margin: 0;
+  margin-bottom: 4px;
+}
+
+.numeral {
+  font-weight: bold;
+  color: #7e88c3;
+  font-size: 12px;
+}
+
+.number {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.location-text {
+  letter-spacing: -0.25px;
+  color: #7e88c3;
+  margin: 0;
+  line-height: 18px;
+  font-size: 11px;
+}
+
+.date {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 32px;
+}
+
+.date-left {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+.big-date {
+  font-weight: bold;
+  font-size: 15px;
+  margin: 12px 0;
+}
+
+.sent-to {
+  margin-bottom: 40px;
+}
+
+.option {
+  display: grid;
+  grid-template-columns: 28% 33% 33%;
+  grid-gap: 3%;
+  padding: 24px;
+  box-shadow: 0px -16px 56px 10px #dbdbdb;
+}
+
+.btn.black {
+  background: #373b53;
+  color: #888eb0;
+}
+
+.btn.morado {
+  background: #7c5dfa;
+  color: white;
+}
