@@ -1,38 +1,34 @@
-import React from "react";
-import DeleteIcon from "../assets/images/icon-delete.svg";
-
+import React, { useContext, useState } from "react";
+import ItemDetail from "./ItemDetail";
+import { ModalContext } from "../context";
 import "../assets/styles/itemList.css";
+const list = {
+  itemName: "",
+  itemQty: "",
+  itemPrice: "",
+};
 
 const Itemlist = () => {
+  const [itemListForm, setItemListForm] = useState([list]);
+  const { invoice, listOfItem, addItemToList } = useContext(ModalContext);
+
+  // const addItem = (e) => {
+  //   e.preventDefault();
+  //   setItemListForm([...itemListForm, list]);
+  //   console.log(itemListForm);
+  // };
+
   return (
     <>
-      <div className="item-list">
+      <div className="itemList">
         <h3>Item List</h3>
-        <div className="block">
-          <p className="info-text">Item Name</p>
-          <input className="full-input" type="text" />
-        </div>
-        <div className="cost ">
-          <div>
-            <p className="info-text">Qty.</p>
-            <input className="full-input" type="text" />
-          </div>
-          <div>
-            <p className="info-text">Price</p>
-            <input className="full-input" type="text" />
-          </div>
-          <div>
-            <div>
-              <p className="info-text">Total</p>
-            </div>
-            <div className="total-continer">
-              <p className="info-text-bold">156.00</p>
-              <img src={DeleteIcon} alt="" />
-            </div>
-          </div>
-        </div>
+        {listOfItem.map(() => (
+          <ItemDetail />
+        ))}
       </div>
-      <button className="btn-large">+ Add New Item</button>
+      <button className="btn-large" onClick={addItemToList}>
+        + Add New Item
+      </button>
     </>
   );
 };

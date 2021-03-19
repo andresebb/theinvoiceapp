@@ -2,7 +2,7 @@ import React from "react";
 import "./assets/styles/index.css";
 import Home from "./pages/home";
 import Header from "./components/Header";
-import NewInvoice from "./pages/newInvoice";
+import NewInvoice from "./pages/NewInvoice";
 import DetailInvoice from "./pages/DetailInvoice";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import EditInvoice from "./pages/EditInvoice";

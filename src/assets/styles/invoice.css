@@ -1,60 +1,32 @@
-.invoice {
-  margin-top: 32px;
-}
-
-.invoice-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 24px;
-}
-
-.invoice-left h2 {
-  font-size: 20px;
-  margin: 0;
-  font-weight: bold;
-  margin-bottom: 4px;
-}
-
-.invoice-left p {
-  margin: 0;
-  font-size: 12px;
-  color: #888eb0;
-}
-
-.invoice-right {
-  display: flex;
-}
-
-.filter-container {
-  display: flex;
-  align-items: center;
-  margin-right: 18px;
-}
-
-.filter-container p {
-  margin-right: 12px;
-  font-weight: bold;
-  font-size: 12px;
-}
-
-.new-container {
-  background: #7c5dfa;
-  display: flex;
-  align-items: center;
-  padding: 6px;
-  border-radius: 32px;
-}
-
-.plus {
+.invoice-box {
   background: white;
-  padding: 10px 13px;
-  border-radius: 22px;
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 16px;
 }
 
-.new {
-  margin: 0 8px;
-  font-weight: bold;
-  color: white;
-  font-size: 12px;
+.invoice-id {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.invoice-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.invoice-number{
+font-weight: bold;
+font-size: 12px;
+line-height: 15px;
+letter-spacing: -0.25px;
+}
+
+.invoice-money{
+font-weight: bold;
+font-size: 16px;
+line-height: 24px;
+letter-spacing: -0.8px;
 }

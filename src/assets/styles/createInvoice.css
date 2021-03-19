@@ -1,0 +1,109 @@
+.invoices {
+  padding: 0 24px;
+}
+
+.create-invoice {
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+.create-invoice-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+
+.invoice-left h2 {
+  font-size: 20px;
+  margin: 0;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.invoice-left p {
+  margin: 0;
+  font-size: 12px;
+  color: #888eb0;
+}
+
+.invoice-right {
+  display: flex;
+}
+
+.filter-container {
+  display: flex;
+  align-items: center;
+  margin-right: 18px;
+}
+
+.filter-container p {
+  margin-right: 12px;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.plus {
+  background: white;
+  padding: 10px 13px;
+  border-radius: 22px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.new {
+  margin: 0 8px;
+  font-weight: bold;
+  color: white;
+  font-size: 12px;
+}
+
+.new-container {
+  background: #7c5dfa;
+  display: flex;
+  align-items: center;
+  padding: 6px;
+  border-radius: 32px;
+  position: relative;
+}
+
+#slider {
+  -webkit-appearance: none;
+  outline: none;
+  background: #7c5dfa;
+  width: 100%;
+  height: 18px;
+}
+
+#slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  position: relative;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  background: white;
+  z-index: 3;
+  position: relative;
+  border-radius: 24px;
+}
+
+#selector {
+  height: 104px;
+  width: 48px;
+  position: absolute;
+  bottom: -78px;
+  left: 48%;
+  transform: translateX(-52%);
+  z-index: 2;
+}
+
+.selectorbtn {
+  height: 14px;
+  width: 14px;
+  background-image: url("../images/icon-plus.svg");
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 0;
+}
