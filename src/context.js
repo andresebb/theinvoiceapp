@@ -37,7 +37,14 @@ export const ModalProvider = ({ children }) => {
 
   const addItemToList = (e) => {
     e.preventDefault();
+    const { name, value } = e.target;
+
     setListOfItem([...listOfItem, list]);
+    console.log(listOfItem);
+  };
+
+  const handleItemList = (e) => {
+    e.preventDefault();
   };
 
   return (
@@ -48,7 +55,9 @@ export const ModalProvider = ({ children }) => {
         invoice,
         handleInputChange,
         listOfItem,
+        setInvoice,
         addItemToList,
+        handleItemList,
       }}
     >
       {children}

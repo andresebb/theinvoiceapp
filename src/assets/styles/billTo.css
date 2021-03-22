@@ -8,3 +8,26 @@
   position: absolute;
   right: 16px;
 }
+
+.payment-box {
+  padding: 8px;
+  margin-top: 16px;
+  border-radius: 8px;
+  border: 1px solid #dfe3fa;
+  text-align: center;
+  display: none;
+}
+
+.payment-option {
+  cursor: pointer;
+}
+
+.payment-option:hover {
+  color: #7c5dfa;
+}
+
+.payment-text {
+  cursor: pointer;
+  position: relative;
+  z-index: 9999;
+}

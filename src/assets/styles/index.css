@@ -109,3 +109,38 @@ body {
   background: #ec5757;
   color: white;
 }
+
+.react-datepicker-wrapper {
+  width: 100% !important;
+}
+
+.react-datepicker__input-container input {
+  cursor: pointer !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  height: 48px !important;
+  border-radius: 4px !important;
+  border: 1px solid #dfe3fa !important;
+  padding: 18px 20px !important;
+  outline: none !important;
+  font-weight: bold !important;
+  color: #0c0e16 !important;
+  font-size: 12px !important;
+  letter-spacing: -0.25px !important;
+}
+
+.react-datepicker {
+  width: 100% !important;
+}
+
+.react-datepicker-popper {
+  right: 0 !important;
+}
+
+.react-datepicker__month-container {
+  float: inherit !important;
+}
+
+.react-datepicker__header {
+  background: #9277ff !important;
+}

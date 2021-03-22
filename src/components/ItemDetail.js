@@ -3,48 +3,23 @@ import DeleteIcon from "../assets/images/icon-delete.svg";
 import { ModalContext } from "../context";
 
 const ItemDetail = () => {
-  const list = {
-    itemName: "",
-    itemQty: "",
-    itemPrice: "",
-  };
-
-  const [itemList, setItemList] = useState([]);
-
-  const handleItemList = (e) => {
-    const { name, value } = e.target;
-  };
+  const { handleItemList } = useContext(ModalContext);
 
   return (
     <>
       <div className="item-list">
         <div className="block">
           <p className="info-text">Item Name</p>
-          <input
-            className="full-input"
-            type="text"
-            name="itemName"
-            onChange={handleItemList}
-          />
+          <input className="full-input" type="text" name="itemName" />
         </div>
         <div className="cost ">
           <div>
             <p className="info-text">Qty.</p>
-            <input
-              className="full-input"
-              type="text"
-              name="itemQty"
-              onChange={handleItemList}
-            />
+            <input className="full-input" type="text" name="itemQty" />
           </div>
           <div>
             <p className="info-text">Price</p>
-            <input
-              className="full-input"
-              type="text"
-              name="itemPrice"
-              onChange={handleItemList}
-            />
+            <input className="full-input" type="text" name="itemPrice" />
           </div>
           <div>
             <div>

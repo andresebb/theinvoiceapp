@@ -23,7 +23,7 @@ const Itemlist = () => {
       <div className="itemList">
         <h3>Item List</h3>
         {listOfItem.map(() => (
-          <ItemDetail />
+          <ItemDetail id="55" />
         ))}
       </div>
       <button className="btn-large" onClick={addItemToList}>
