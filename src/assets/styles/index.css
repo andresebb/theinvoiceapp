@@ -144,3 +144,13 @@ body {
 .react-datepicker__header {
   background: #9277ff !important;
 }
+
+.react-datepicker__week {
+  display: flex;
+  justify-content: space-around;
+}
+
+.react-datepicker__day-names {
+  display: flex;
+  justify-content: space-around;
+}

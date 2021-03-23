@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../assets/styles/newInvoice.css";
 import GoBack from "../components/GoBack";
 import BillFrom from "../components/BillFrom";
@@ -9,7 +9,11 @@ import { db } from "../firebase";
 import Itemlist from "../components/Itemlist";
 
 const NewInvoice = () => {
-  const { invoice } = useContext(ModalContext);
+  const { invoice, setInvoice } = useContext(ModalContext);
+
+  useEffect(() => {
+    generateId();
+  }, []);
 
   const addNewInvoice = async () => {
     console.log(invoice);
@@ -19,6 +23,23 @@ const NewInvoice = () => {
     // } catch (e) {
     //   console.log(e);
     // }
+  };
+
+  const generateId = () => {
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const letter1 = characters.charAt(
+      Math.floor(Math.random() * characters.length)
+    );
+
+    const letter2 = characters.charAt(
+      Math.floor(Math.random() * characters.length)
+    );
+
+    const numbers = Math.floor(Math.random() * (9999 - 1000) + 1000);
+
+    const result = `${letter1}${letter2}${numbers}`;
+
+    setInvoice({ ...invoice, id: result });
   };
 
   return (

@@ -4,6 +4,7 @@ import React, { createContext, useState } from "react";
 export const ModalContext = createContext();
 
 const initialInvoice = {
+  id: "",
   billFromStreet: "",
   billFromCity: "",
   billFromCode: "",
