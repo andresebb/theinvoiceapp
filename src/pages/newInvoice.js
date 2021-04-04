@@ -9,21 +9,11 @@ import { db } from "../firebase";
 import Itemlist from "../components/Itemlist";
 
 const NewInvoice = () => {
-  const { invoice, setInvoice } = useContext(ModalContext);
+  const { invoice, setInvoice, addNewInvoice } = useContext(ModalContext);
 
   useEffect(() => {
     generateId();
   }, []);
-
-  const addNewInvoice = async () => {
-    console.log(invoice);
-    // try {
-    //   await db.collection("invoices").doc().set(invoice);
-    //   console.log("todo bien");
-    // } catch (e) {
-    //   console.log(e);
-    // }
-  };
 
   const generateId = () => {
     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

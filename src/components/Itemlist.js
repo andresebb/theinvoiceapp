@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import ItemDetail from "./ItemDetail";
 import { ModalContext } from "../context";
 import "../assets/styles/itemList.css";
@@ -9,24 +9,23 @@ const list = {
 };
 
 const Itemlist = () => {
-  const [itemListForm, setItemListForm] = useState([list]);
-  const { invoice, listOfItem, addItemToList } = useContext(ModalContext);
+  const [numberOfItems, setNumberOfItems] = useState([{}]);
 
-  // const addItem = (e) => {
-  //   e.preventDefault();
-  //   setItemListForm([...itemListForm, list]);
-  //   console.log(itemListForm);
-  // };
+  const addItem = (e) => {
+    setNumberOfItems([...numberOfItems, {}]);
+  };
 
   return (
     <>
       <div className="itemList">
         <h3>Item List</h3>
-        {listOfItem.map(() => (
-          <ItemDetail id="55" />
-        ))}
+        <div>
+          {numberOfItems.map(() => (
+            <ItemDetail />
+          ))}
+        </div>
       </div>
-      <button className="btn-large" onClick={addItemToList}>
+      <button className="btn-large" onClick={addItem}>
         + Add New Item
       </button>
     </>

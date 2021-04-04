@@ -10,15 +10,16 @@ const InvoiceList = () => {
     getInvoices();
   }, []);
 
+  // Get Data from Firebase
   const getInvoices = async () => {
     db.collection("invoices").onSnapshot((querySnapshot) => {
       const docs = [];
       querySnapshot.forEach((doc) => {
-        console.log(doc);
+        // console.log(doc.data());
         docs.push({ ...doc.data() });
       });
       setInvoices(docs);
-      console.log(invoices);
+      // console.log(invoices);
     });
   };
 

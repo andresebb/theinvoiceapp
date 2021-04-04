@@ -18,34 +18,45 @@ const initialInvoice = {
   billToDate: "",
   billToTerms: "",
   billToDescription: "",
-};
-
-const list = {
-  itemName: "",
-  itemQty: "",
-  itemPrice: "",
+  itemList: [],
 };
 
 export const ModalProvider = ({ children }) => {
   const [show, setShow] = useState(false);
   const [invoice, setInvoice] = useState(initialInvoice);
-  const [listOfItem, setListOfItem] = useState([list]);
+  const [listOfItem, setListOfItem] = useState([]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setInvoice({ ...invoice, [name]: value });
   };
 
-  const addItemToList = (e) => {
-    e.preventDefault();
-    const { name, value } = e.target;
+  const addItemToList = (itemName, itemQty, itemPrice, itemTotal) => {
+    // console.log(`${itemName} ${itemQty} ${itemPrice} `);
+
+    const list = {
+      name: itemName,
+      qty: itemQty,
+      price: itemPrice,
+      total: itemTotal,
+    };
 
     setListOfItem([...listOfItem, list]);
-    console.log(listOfItem);
   };
 
   const handleItemList = (e) => {
     e.preventDefault();
+  };
+
+  const addNewInvoice = async () => {
+    setInvoice({ ...invoice, itemList: listOfItem });
+
+    // try {
+    //   await db.collection("invoices").doc().set(invoice);
+    //   console.log("todo bien");
+    // } catch (e) {
+    //   console.log(e);
+    // }
   };
 
   return (
@@ -59,6 +70,7 @@ export const ModalProvider = ({ children }) => {
         setInvoice,
         addItemToList,
         handleItemList,
+        addNewInvoice,
       }}
     >
       {children}
