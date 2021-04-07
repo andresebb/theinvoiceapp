@@ -4,7 +4,6 @@ import GoBack from "../components/GoBack";
 import BillFrom from "../components/BillFrom";
 import BillTo from "../components/BillTo";
 import { ModalContext } from "../context";
-import { db } from "../firebase";
 
 import Itemlist from "../components/Itemlist";
 

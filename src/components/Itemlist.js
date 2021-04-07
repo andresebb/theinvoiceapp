@@ -9,7 +9,7 @@ const list = {
 };
 
 const Itemlist = () => {
-  const [numberOfItems, setNumberOfItems] = useState([{}]);
+  const { numberOfItems, setNumberOfItems } = useContext(ModalContext);
 
   const addItem = (e) => {
     setNumberOfItems([...numberOfItems, {}]);

@@ -17,8 +17,9 @@ const BillTo = () => {
 
   useEffect(() => {
     setInvoice({ ...invoice, billToDate: startDate });
-    console.log(startDate);
   }, [startDate]);
+
+  const getDate = () => {};
 
   const handlePaymentOption = (e) => {
     let option = e.target.textContent;

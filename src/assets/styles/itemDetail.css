@@ -1,0 +1,19 @@
+.action-container {
+  display: flex;
+  align-items: center;
+}
+
+.action-container button {
+  background: white;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.send-check {
+  margin-right: 18px;
+}
+
+.fa-check-double {
+  color: #779ecd;
+}

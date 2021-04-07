@@ -1,7 +1,10 @@
 //Creando el contexto
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
+import { db } from "./firebase";
 
 export const ModalContext = createContext();
+
+let itemos;
 
 const initialInvoice = {
   id: "",
@@ -15,25 +18,42 @@ const initialInvoice = {
   billToCity: "",
   billToCode: "",
   billToCountry: "",
-  billToDate: "",
+  billToDate: new Date(),
   billToTerms: "",
   billToDescription: "",
-  itemList: [],
+  itemList: "",
 };
 
 export const ModalProvider = ({ children }) => {
   const [show, setShow] = useState(false);
-  const [invoice, setInvoice] = useState(initialInvoice);
   const [listOfItem, setListOfItem] = useState([]);
+  const [numberOfItems, setNumberOfItems] = useState([{}]);
+
+  const [invoice, setInvoice] = useState({
+    id: "",
+    billFromStreet: "",
+    billFromCity: "",
+    billFromCode: "",
+    billFromCountry: "",
+    billToName: "",
+    billToEmail: "",
+    billToStreet: "",
+    billToCity: "",
+    billToCode: "",
+    billToCountry: "",
+    billToDate: new Date(),
+    billToTerms: "",
+    billToDescription: "",
+    itemList: [],
+    status: "Pending",
+  });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setInvoice({ ...invoice, [name]: value });
   };
 
-  const addItemToList = (itemName, itemQty, itemPrice, itemTotal) => {
-    // console.log(`${itemName} ${itemQty} ${itemPrice} `);
-
+  const addItemToList = async (itemName, itemQty, itemPrice, itemTotal) => {
     const list = {
       name: itemName,
       qty: itemQty,
@@ -41,15 +61,14 @@ export const ModalProvider = ({ children }) => {
       total: itemTotal,
     };
 
+    //Esta fue la unica forma de que me agarra el itemList, por eso lo hice asi.
     setListOfItem([...listOfItem, list]);
+    setInvoice({ ...invoice, itemList: [...listOfItem, list] });
   };
 
-  const handleItemList = (e) => {
-    e.preventDefault();
-  };
-
+  //Send invoice to Firebase
   const addNewInvoice = async () => {
-    setInvoice({ ...invoice, itemList: listOfItem });
+    console.log(invoice);
 
     // try {
     //   await db.collection("invoices").doc().set(invoice);
@@ -65,12 +84,14 @@ export const ModalProvider = ({ children }) => {
         show,
         setShow,
         invoice,
+        setInvoice,
         handleInputChange,
         listOfItem,
-        setInvoice,
+        setListOfItem,
         addItemToList,
-        handleItemList,
         addNewInvoice,
+        numberOfItems,
+        setNumberOfItems,
       }}
     >
       {children}

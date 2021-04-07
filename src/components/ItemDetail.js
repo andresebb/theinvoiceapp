@@ -1,9 +1,17 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import DeleteIcon from "../assets/images/icon-delete.svg";
 import { ModalContext } from "../context";
+import "../assets/styles/itemDetail.css";
 
 const ItemDetail = () => {
-  const { addItemToList } = useContext(ModalContext);
+  const {
+    addItemToList,
+    listOfItem,
+    setListOfItem,
+    invoice,
+    setInvoice,
+  } = useContext(ModalContext);
+  const check = useRef(null);
 
   const [form, setForm] = useState({
     itemName: "",
@@ -18,7 +26,7 @@ const ItemDetail = () => {
 
   const getTotal = () => {
     setForm({ ...form, itemTotal: form.itemQty * form.itemPrice });
-    console.log(form);
+    // console.log(form);
   };
 
   const onchange = ({ target }) => {
@@ -34,6 +42,29 @@ const ItemDetail = () => {
     const { itemName, itemQty, itemPrice, itemTotal } = form;
 
     addItemToList(itemName, itemQty, itemPrice, itemTotal);
+
+    //Button Disabled
+    e.target.firstChild.lastChild.lastChild.lastChild.lastChild.firstChild.disabled =
+      "true";
+
+    check.current.style.color = "#7c5dfa";
+  };
+
+  const removeItem = (e) => {
+    //Delete from DOM
+    e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.remove();
+
+    const itemName =
+      e.target.parentElement.parentElement.parentElement.parentElement
+        .parentElement.parentElement.firstChild.lastChild.value;
+
+    //Delete from ListOfItems
+    const oficialItems = listOfItem.filter((item) => {
+      return item.name !== itemName;
+    });
+
+    setInvoice({ ...invoice, itemList: oficialItems });
+    setListOfItem(oficialItems);
   };
 
   return (
@@ -74,12 +105,18 @@ const ItemDetail = () => {
               </div>
               <div className="total-continer">
                 <p className="info-text-bold">{form.itemTotal}</p>
-                <img src={DeleteIcon} alt="" />
+                <div className="action-container">
+                  <button type="submit" className="send-check">
+                    <i ref={check} class="fas fa-check-double"></i>
+                  </button>
+                  <button type="button" onClick={removeItem}>
+                    <img src={DeleteIcon} alt="" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <button type="submit">Send</button>
       </form>
     </>
   );

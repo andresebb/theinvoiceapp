@@ -3,12 +3,11 @@ import "../assets/styles/invoice.css";
 
 const Invoice = ({ data }) => {
   const [date, setDate] = useState(data.billToDate);
-  let time;
+  const [time, setTime] = useState(null);
 
   useEffect(() => {
     // setDate(date.seconds);
-    time = new Date(date.seconds * 1000).toDateString();
-    console.log(time);
+    setTime(new Date(date.seconds * 1000).toDateString());
   }, []);
 
   console.log(data);
@@ -21,7 +20,7 @@ const Invoice = ({ data }) => {
       </div>
       <div className="invoice-status">
         <div>
-          <p className="info-text">{time}</p>
+          <p className="info-text">Due {time}</p>
           <p className="invoice-money">$ 1,800.990</p>
         </div>
         <div className="status">
