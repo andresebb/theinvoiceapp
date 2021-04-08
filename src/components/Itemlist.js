@@ -12,7 +12,25 @@ const Itemlist = () => {
   const { numberOfItems, setNumberOfItems } = useContext(ModalContext);
 
   const addItem = (e) => {
-    setNumberOfItems([...numberOfItems, {}]);
+    let vin = generateId();
+    setNumberOfItems([...numberOfItems, { id: vin }]);
+  };
+
+  const generateId = () => {
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const letter1 = characters.charAt(
+      Math.floor(Math.random() * characters.length)
+    );
+
+    const letter2 = characters.charAt(
+      Math.floor(Math.random() * characters.length)
+    );
+
+    const numbers = Math.floor(Math.random() * (9999 - 1000) + 1000);
+
+    const result = `${letter1}${letter2}${numbers}`;
+
+    return result;
   };
 
   return (
@@ -20,8 +38,8 @@ const Itemlist = () => {
       <div className="itemList">
         <h3>Item List</h3>
         <div>
-          {numberOfItems.map(() => (
-            <ItemDetail />
+          {numberOfItems.map(({ id }) => (
+            <ItemDetail key={id} />
           ))}
         </div>
       </div>

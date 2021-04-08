@@ -4,9 +4,7 @@ import { db } from "./firebase";
 
 export const ModalContext = createContext();
 
-let itemos;
-
-const initialInvoice = {
+const startInvoice = {
   id: "",
   billFromStreet: "",
   billFromCity: "",
@@ -21,13 +19,15 @@ const initialInvoice = {
   billToDate: new Date(),
   billToTerms: "",
   billToDescription: "",
-  itemList: "",
+  itemList: [],
+  grandTotal: 0,
+  status: "Pending",
 };
 
 export const ModalProvider = ({ children }) => {
   const [show, setShow] = useState(false);
   const [listOfItem, setListOfItem] = useState([]);
-  const [numberOfItems, setNumberOfItems] = useState([{}]);
+  const [numberOfItems, setNumberOfItems] = useState([{ id: "1" }]);
 
   const [invoice, setInvoice] = useState({
     id: "",
@@ -45,6 +45,7 @@ export const ModalProvider = ({ children }) => {
     billToTerms: "",
     billToDescription: "",
     itemList: [],
+    grandTotal: 0,
     status: "Pending",
   });
 
@@ -53,7 +54,7 @@ export const ModalProvider = ({ children }) => {
     setInvoice({ ...invoice, [name]: value });
   };
 
-  const addItemToList = async (itemName, itemQty, itemPrice, itemTotal) => {
+  const addItemToList = (itemName, itemQty, itemPrice, itemTotal) => {
     const list = {
       name: itemName,
       qty: itemQty,
@@ -61,21 +62,32 @@ export const ModalProvider = ({ children }) => {
       total: itemTotal,
     };
 
+    //ITEMLIST AHORA NO SIRVE NO SE
+
     //Esta fue la unica forma de que me agarra el itemList, por eso lo hice asi.
     setListOfItem([...listOfItem, list]);
-    setInvoice({ ...invoice, itemList: [...listOfItem, list] });
+    setInvoice({
+      ...invoice,
+      itemList: [...listOfItem, list],
+      grandTotal: invoice.grandTotal + list.total,
+    });
   };
 
   //Send invoice to Firebase
   const addNewInvoice = async () => {
-    console.log(invoice);
+    try {
+      await db.collection("invoices").doc().set(invoice);
+      console.log("todo bien");
+      resetInvoice();
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
-    // try {
-    //   await db.collection("invoices").doc().set(invoice);
-    //   console.log("todo bien");
-    // } catch (e) {
-    //   console.log(e);
-    // }
+  const resetInvoice = () => {
+    setInvoice(startInvoice);
+    setListOfItem([]);
+    setNumberOfItems([{ id: 1 }]);
   };
 
   return (

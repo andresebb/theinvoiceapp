@@ -62,9 +62,20 @@ const ItemDetail = () => {
     const oficialItems = listOfItem.filter((item) => {
       return item.name !== itemName;
     });
-
-    setInvoice({ ...invoice, itemList: oficialItems });
+    // setInvoice({ ...invoice, itemList: oficialItems });
     setListOfItem(oficialItems);
+
+    // Restar grandTotal from listOfItem
+    listOfItem.find((item) => {
+      // setTotal(total + item.total);
+      if (item.name === itemName) {
+        setInvoice({
+          ...invoice,
+          grandTotal: invoice.grandTotal - item.total,
+          itemList: oficialItems,
+        });
+      }
+    });
   };
 
   return (
@@ -101,13 +112,15 @@ const ItemDetail = () => {
             </div>
             <div>
               <div>
-                <p className="info-text">Total</p>
+                <p type="number" className="info-text">
+                  Total
+                </p>
               </div>
               <div className="total-continer">
                 <p className="info-text-bold">{form.itemTotal}</p>
                 <div className="action-container">
                   <button type="submit" className="send-check">
-                    <i ref={check} class="fas fa-check-double"></i>
+                    <i ref={check} className="fas fa-check-double"></i>
                   </button>
                   <button type="button" onClick={removeItem}>
                     <img src={DeleteIcon} alt="" />

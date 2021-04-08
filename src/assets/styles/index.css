@@ -12,6 +12,10 @@ body {
   margin-bottom: 24px;
 }
 
+button {
+  outline: none;
+}
+
 .info-text-bold {
   font-size: 12px;
   letter-spacing: -0.25px;
@@ -63,6 +67,11 @@ body {
   border-radius: 24px;
   background: #f9fafe;
   cursor: pointer;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  outline: none;
 }
 
 .info-text {

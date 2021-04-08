@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "../assets/styles/newInvoice.css";
 import GoBack from "../components/GoBack";
 import BillFrom from "../components/BillFrom";
@@ -43,9 +44,9 @@ const NewInvoice = () => {
       <div className="option">
         <button className="btn">Discard</button>
         <button className="btn black">Save as Draf</button>
-        <button className="btn morado" onClick={addNewInvoice}>
+        <Link className="btn morado" to="/" onClick={addNewInvoice}>
           Save & Send
-        </button>
+        </Link>
       </div>
     </>
   );

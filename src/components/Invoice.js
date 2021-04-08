@@ -21,7 +21,7 @@ const Invoice = ({ data }) => {
       <div className="invoice-status">
         <div>
           <p className="info-text">Due {time}</p>
-          <p className="invoice-money">$ 1,800.990</p>
+          <p className="invoice-money">$ {data.grandTotal}</p>
         </div>
         <div className="status">
           <div className="punto"></div>
