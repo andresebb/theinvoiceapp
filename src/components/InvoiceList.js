@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Invoice from "./Invoice";
 import Empty from "./Empty";
 import { db } from "../firebase";
+import { Link } from "react-router-dom";
 
 const InvoiceList = () => {
   const [invoices, setInvoices] = useState([]);
@@ -28,7 +29,11 @@ const InvoiceList = () => {
       {invoices.length === 0 ? (
         <Empty />
       ) : (
-        invoices.map((invoice) => <Invoice key={invoice.id} data={invoice} />)
+        invoices.map((invoice) => (
+          <Link to={`detail:${invoice.id}`}>
+            <Invoice key={invoice.id} data={invoice} />
+          </Link>
+        ))
       )}
     </div>
   );

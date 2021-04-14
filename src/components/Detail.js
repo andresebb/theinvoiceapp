@@ -1,8 +1,41 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../assets/styles/detail.css";
 import TotalBox from "./TotalBox";
 
-const Detail = () => {
+const Detail = ({ data }) => {
+  const [date, setDate] = useState(data.billToDate);
+  const [time, setTime] = useState(null);
+  const [expireNumber, setExpireNumber] = useState(0);
+  const fechaActual = new Date(date.seconds * 1000);
+
+  console.log(data);
+
+  useEffect(() => {
+    if (typeof date === "number") {
+      setDate(date.seconds);
+    }
+    setTime(new Date(date.seconds * 1000).toDateString());
+  }, [date]);
+
+  useEffect(() => {
+    getExpireNumber();
+  }, []);
+
+  const sumarDias = (fecha, dias) => {
+    fecha.setDate(fecha.getDate() + dias);
+    return fecha.toDateString();
+  };
+
+  const getExpireNumber = () => {
+    if (data.billToTerms === "Net one week") {
+      setExpireNumber(7);
+    } else if (data.billToTerms === "Net 15 days") {
+      setExpireNumber(15);
+    } else if (data.billToTerms === "Net 30 days") {
+      setExpireNumber(30);
+    }
+  };
+
   return (
     <>
       <div className="detail-container">
@@ -10,13 +43,16 @@ const Detail = () => {
           <div className="detail-number">
             <p>
               <span className="numeral">#</span>
-              <span className="number">XM9141</span>
+              <span className="number">{data ? data.id : null}</span>
             </p>
             <p className="info-text">Graphic Design</p>
           </div>
           <div className="location">
             <p className="location-text">
-              19 Union Terrace <br /> London <br /> El 3EZ <br /> United kingdom
+              {data ? data.billFromStreet : null}
+              <br /> {data ? data.billFromCity : null} <br />
+              {data ? data.billFromCode : null} <br />
+              {data ? data.billFromCountry : null}
             </p>
           </div>
         </div>
@@ -24,29 +60,30 @@ const Detail = () => {
           <div className="date-left">
             <div>
               <p className="info-text">Invoice Date</p>
-              <p className="big-date">21 Aug 2021</p>
+              <p className="big-date">{time}</p>
             </div>
             <div>
               <p className="info-text">Payment Due</p>
-              <p className="big-date">20 Sep 2021</p>
+              <p className="big-date">{sumarDias(fechaActual, expireNumber)}</p>
             </div>
           </div>
           <div className="date-right">
             <p className="info-text">Bill to</p>
-            <p className="big-date">Alex Grim</p>
+            <p className="big-date">{data.billToName}</p>
             <p className="location-text">
-              84 Church Way <br />
-              Broadford <br />
-              BD19PB <br />
-              United Kingdom
+              {data.billToStreet}
+              <br />
+              {data.billToCity} <br />
+              {data.billToCode} <br />
+              {data.billToCountry}
             </p>
           </div>
         </div>
         <div className="sent-to ">
           <p className="info-text">Sent to</p>
-          <p className="big-date">alexgrim@gmail.com</p>
+          <p className="big-date">{data.billToEmail}</p>
         </div>
-        <TotalBox />
+        <TotalBox list={data.itemList} />
       </div>
     </>
   );

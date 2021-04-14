@@ -10,8 +10,6 @@ const Invoice = ({ data }) => {
     setTime(new Date(date.seconds * 1000).toDateString());
   }, []);
 
-  console.log(data);
-
   return (
     <div className="invoice-box">
       <div className="invoice-id">
