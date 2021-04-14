@@ -83,7 +83,7 @@ const Detail = ({ data }) => {
           <p className="info-text">Sent to</p>
           <p className="big-date">{data.billToEmail}</p>
         </div>
-        <TotalBox list={data.itemList} />
+        <TotalBox list={data.itemList} total={data.grandTotal} />
       </div>
     </>
   );

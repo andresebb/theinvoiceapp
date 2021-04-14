@@ -90,6 +90,23 @@ export const ModalProvider = ({ children }) => {
     setNumberOfItems([{ id: 1 }]);
   };
 
+  const generateId = () => {
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const letter1 = characters.charAt(
+      Math.floor(Math.random() * characters.length)
+    );
+
+    const letter2 = characters.charAt(
+      Math.floor(Math.random() * characters.length)
+    );
+
+    const numbers = Math.floor(Math.random() * (9999 - 1000) + 1000);
+
+    const result = `${letter1}${letter2}${numbers}`;
+
+    return result;
+  };
+
   return (
     <ModalContext.Provider
       value={{
@@ -104,6 +121,7 @@ export const ModalProvider = ({ children }) => {
         addNewInvoice,
         numberOfItems,
         setNumberOfItems,
+        generateId,
       }}
     >
       {children}
