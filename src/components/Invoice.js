@@ -1,14 +1,37 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "../assets/styles/invoice.css";
 
 const Invoice = ({ data }) => {
   const [date, setDate] = useState(data.billToDate);
   const [time, setTime] = useState(null);
 
+  const status = useRef(null);
+  const punto = useRef(null);
+
   useEffect(() => {
     // setDate(date.seconds);
     setTime(new Date(date.seconds * 1000).toDateString());
   }, []);
+
+  if (status.current != null) {
+    switch (status.current.className) {
+      case "status Pending":
+        status.current.style.background = "#ff910015";
+        status.current.style.color = "#ff8f00";
+        punto.current.style.background = "#ff8f00";
+        break;
+      case "status Paid":
+        status.current.style.background = "#EDFCF9";
+        status.current.style.color = "#33D69F";
+        punto.current.style.background = "#33D69F";
+        break;
+      case "status Draft":
+        status.current.style.background = "#aeaeae15";
+        status.current.style.color = "#333333";
+        punto.current.style.background = "#333333";
+        break;
+    }
+  }
 
   return (
     <div className="invoice-box">
@@ -21,9 +44,9 @@ const Invoice = ({ data }) => {
           <p className="info-text">Due {time}</p>
           <p className="invoice-money">$ {data.grandTotal}</p>
         </div>
-        <div className="status">
-          <div className="punto"></div>
-          <p>Pending</p>
+        <div ref={status} className={`status ${data.status}`}>
+          <div ref={punto} className={`punto ${data.status}`}></div>
+          <p>{data.status}</p>
         </div>
       </div>
     </div>

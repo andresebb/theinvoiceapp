@@ -28,6 +28,7 @@ export const ModalProvider = ({ children }) => {
   const [show, setShow] = useState(false);
   const [listOfItem, setListOfItem] = useState([]);
   const [numberOfItems, setNumberOfItems] = useState([{ id: "1" }]);
+  const [actualInvoice, setActualInvoice] = useState(null);
 
   const [invoice, setInvoice] = useState({
     id: "",
@@ -107,6 +108,22 @@ export const ModalProvider = ({ children }) => {
     return result;
   };
 
+  const getActualInvoice = (idLocation) => {
+    db.collection("invoices").onSnapshot((querySnapshot) => {
+      const docs = [];
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        docs.push({ ...doc.data() });
+      });
+
+      docs.find((invoice) => {
+        if (invoice.id === idLocation) {
+          setActualInvoice(invoice);
+        }
+      });
+    });
+  };
+
   return (
     <ModalContext.Provider
       value={{
@@ -122,6 +139,9 @@ export const ModalProvider = ({ children }) => {
         numberOfItems,
         setNumberOfItems,
         generateId,
+        actualInvoice,
+        setActualInvoice,
+        getActualInvoice,
       }}
     >
       {children}

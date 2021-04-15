@@ -1,8 +1,6 @@
 import React from "react";
 
 const IndividualTotalItem = ({ info }) => {
-  console.log(info);
-
   return (
     <div className="total-item">
       <div className="text-left">

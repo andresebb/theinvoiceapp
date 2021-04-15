@@ -8,8 +8,6 @@ const Detail = ({ data }) => {
   const [expireNumber, setExpireNumber] = useState(0);
   const fechaActual = new Date(date.seconds * 1000);
 
-  console.log(data);
-
   useEffect(() => {
     if (typeof date === "number") {
       setDate(date.seconds);
