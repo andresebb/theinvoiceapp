@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import { Link } from "react-router-dom"
+import React, { useRef, useContext } from "react";
+import { Link } from "react-router-dom";
 import "../assets/styles/createInvoice.css";
 import ArrowDown from "../assets/images/icon-arrow-down.svg";
 import PlusIcon from "../assets/images/icon-plus.svg";

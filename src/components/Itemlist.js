@@ -9,7 +9,9 @@ const list = {
 };
 
 const Itemlist = () => {
-  const { numberOfItems, setNumberOfItems } = useContext(ModalContext);
+  const { numberOfItems, setNumberOfItems, actualInvoice } = useContext(
+    ModalContext
+  );
 
   const addItem = (e) => {
     let vin = generateId();
@@ -41,6 +43,18 @@ const Itemlist = () => {
           {numberOfItems.map(({ id }) => (
             <ItemDetail key={id} />
           ))}
+
+          {actualInvoice ? (
+            <>
+              {actualInvoice.itemList.map((data) => (
+                <ItemDetail data={data} />
+              ))}
+            </>
+          ) : (
+            <>
+              <p>Chao</p>
+            </>
+          )}
         </div>
       </div>
       <button className="btn-large" onClick={addItem}>

@@ -9,11 +9,21 @@ import { ModalContext } from "../context";
 import Itemlist from "../components/Itemlist";
 
 const NewInvoice = () => {
-  const { invoice, setInvoice, addNewInvoice } = useContext(ModalContext);
+  const {
+    invoice,
+    setInvoice,
+    addNewInvoice,
+    resetActualInvoice,
+    actualInvoice,
+  } = useContext(ModalContext);
 
   useEffect(() => {
     generateId();
   }, []);
+
+  useEffect(() => {
+    resetActualInvoice();
+  }, [actualInvoice]);
 
   const generateId = () => {
     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

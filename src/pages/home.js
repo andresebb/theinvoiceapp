@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import CreateFilter from "../components/CreateFilter";
-import Empty from "../components/Empty";
+import { ModalContext } from "../context";
 import InvoiceList from "../components/InvoiceList";
 
-const home = () => {
+const Home = () => {
+  const { resetActualInvoice, resetInvoice } = useContext(ModalContext);
+
+  useEffect(() => {
+    resetActualInvoice();
+    resetInvoice();
+  }, []);
+
   return (
     <>
       <CreateFilter />
@@ -12,4 +19,4 @@ const home = () => {
   );
 };
 
-export default home;
+export default Home;

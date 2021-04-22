@@ -1,20 +1,34 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../assets/styles/newInvoice.css";
 import GoBack from "../components/GoBack";
 import BillFrom from "../components/BillFrom";
 import BillTo from "../components/BillTo";
 import Itemlist from "../components/Itemlist";
 import { ModalContext } from "../context";
+import { db } from "../firebase";
 
 const EditInvoice = () => {
-  const { actualInvoice, getActualInvoice } = useContext(ModalContext);
+  const { actualInvoice, resetInvoice, invoice, getInvoiceById } = useContext(
+    ModalContext
+  );
 
   const location = window.location.pathname.split(":");
   const idLocation = location[1];
 
   useEffect(() => {
-    getActualInvoice(idLocation);
-  });
+    getInvoiceById(idLocation);
+  }, []);
+
+  //Edit invoice on the firestore
+  const handleEditInvoice = async () => {
+    try {
+      await db.collection("invoices").doc(actualInvoice.id).update(invoice);
+      console.log("todo bien");
+      resetInvoice();
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <>
@@ -30,7 +44,9 @@ const EditInvoice = () => {
           <div className="option">
             <button className="btn">Discard</button>
             <button className="btn black">Save as Draf</button>
-            <button className="btn morado">Save & Send</button>
+            <button className="btn morado" onClick={handleEditInvoice}>
+              Save & Update
+            </button>
           </div>
         </>
       ) : (

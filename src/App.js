@@ -1,6 +1,6 @@
 import React from "react";
 import "./assets/styles/index.css";
-import Home from "./pages/home";
+import Home from "./pages/Home";
 import Header from "./components/Header";
 import NewInvoice from "./pages/NewInvoice";
 import DetailInvoice from "./pages/DetailInvoice";

@@ -3,15 +3,30 @@ import DeleteIcon from "../assets/images/icon-delete.svg";
 import { ModalContext } from "../context";
 import "../assets/styles/itemDetail.css";
 
-const ItemDetail = () => {
+const ItemDetail = ({ data }) => {
   const {
     addItemToList,
     listOfItem,
     setListOfItem,
     invoice,
     setInvoice,
+    actualInvoice,
   } = useContext(ModalContext);
   const check = useRef(null);
+
+  useEffect(() => {
+    PrintItemFromFirebase();
+  }, [data]);
+
+  //Quedamos aqui, mira el context en el navegador,se agrefo al itemofList pero no se elimina
+
+  const PrintItemFromFirebase = () => {
+    if (data != undefined) {
+      addItemToList(data.name, data.qty, data.price, data.total);
+    }
+  };
+
+  console.log(data);
 
   const [form, setForm] = useState({
     itemName: "",
@@ -80,57 +95,116 @@ const ItemDetail = () => {
 
   return (
     <>
-      <form onSubmit={hanldeSubmit}>
-        <div className="item-list">
-          <div className="block">
-            <p className="info-text">Item Name</p>
-            <input
-              className="full-input"
-              type="text"
-              name="itemName"
-              onChange={onchange}
-            />
-          </div>
-          <div className="cost ">
-            <div>
-              <p className="info-text">Qty.</p>
-              <input
-                className="full-input"
-                type="number"
-                name="itemQty"
-                onChange={onchange}
-              />
-            </div>
-            <div>
-              <p className="info-text">Price</p>
-              <input
-                className="full-input"
-                type="number"
-                name="itemPrice"
-                onChange={onchange}
-              />
-            </div>
-            <div>
-              <div>
-                <p type="number" className="info-text">
-                  Total
-                </p>
+      {data ? (
+        <>
+          <form onSubmit={hanldeSubmit}>
+            <div className="item-list">
+              <div className="block">
+                <p className="info-text">Item Name</p>
+                <input
+                  className="full-input"
+                  type="text"
+                  name="itemName"
+                  onChange={onchange}
+                  value={data.name}
+                />
               </div>
-              <div className="total-continer">
-                <p className="info-text-bold">{form.itemTotal}</p>
-                <div className="action-container">
-                  <button type="submit" className="send-check">
-                    <i ref={check} className="fas fa-check-double"></i>
-                  </button>
-                  <button type="button" onClick={removeItem}>
-                    <img src={DeleteIcon} alt="" />
-                  </button>
+              <div className="cost ">
+                <div>
+                  <p className="info-text">Qty.</p>
+                  <input
+                    className="full-input"
+                    type="number"
+                    name="itemQty"
+                    onChange={onchange}
+                  />
+                </div>
+                <div>
+                  <p className="info-text">Price</p>
+                  <input
+                    className="full-input"
+                    type="number"
+                    name="itemPrice"
+                    onChange={onchange}
+                  />
+                </div>
+                <div>
+                  <div>
+                    <p type="number" className="info-text">
+                      Total
+                    </p>
+                  </div>
+                  <div className="total-continer">
+                    <p className="info-text-bold">{form.itemTotal}</p>
+                    <div className="action-container">
+                      <button type="submit" className="send-check">
+                        <i ref={check} className="fas fa-check-double"></i>
+                      </button>
+                      <button type="button" onClick={removeItem}>
+                        <img src={DeleteIcon} alt="" />
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </form>
+          </form>
+        </>
+      ) : (
+        <>
+          <form onSubmit={hanldeSubmit}>
+            <div className="item-list">
+              <div className="block">
+                <p className="info-text">Item Name</p>
+                <input
+                  className="full-input"
+                  type="text"
+                  name="itemName"
+                  onChange={onchange}
+                />
+              </div>
+              <div className="cost ">
+                <div>
+                  <p className="info-text">Qty.</p>
+                  <input
+                    className="full-input"
+                    type="number"
+                    name="itemQty"
+                    onChange={onchange}
+                  />
+                </div>
+                <div>
+                  <p className="info-text">Price</p>
+                  <input
+                    className="full-input"
+                    type="number"
+                    name="itemPrice"
+                    onChange={onchange}
+                  />
+                </div>
+                <div>
+                  <div>
+                    <p type="number" className="info-text">
+                      Total
+                    </p>
+                  </div>
+                  <div className="total-continer">
+                    <p className="info-text-bold">{form.itemTotal}</p>
+                    <div className="action-container">
+                      <button type="submit" className="send-check">
+                        <i ref={check} className="fas fa-check-double"></i>
+                      </button>
+                      <button type="button" onClick={removeItem}>
+                        <img src={DeleteIcon} alt="" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </>
+      )}
     </>
   );
 };

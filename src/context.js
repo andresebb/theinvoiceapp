@@ -1,5 +1,6 @@
 //Creando el contexto
 import React, { createContext, useEffect, useState } from "react";
+import { setDefaultLocale } from "react-datepicker";
 import { db } from "./firebase";
 
 export const ModalContext = createContext();
@@ -91,6 +92,10 @@ export const ModalProvider = ({ children }) => {
     setNumberOfItems([{ id: 1 }]);
   };
 
+  const resetActualInvoice = async () => {
+    await setActualInvoice(null);
+  };
+
   const generateId = () => {
     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const letter1 = characters.charAt(
@@ -108,20 +113,28 @@ export const ModalProvider = ({ children }) => {
     return result;
   };
 
-  const getActualInvoice = (idLocation) => {
-    db.collection("invoices").onSnapshot((querySnapshot) => {
-      const docs = [];
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        docs.push({ ...doc.data() });
-      });
+  // const getActualInvoice = (idLocation) => {
+  //   db.collection("invoices").onSnapshot((querySnapshot) => {
+  //     const docs = [];
+  //     querySnapshot.forEach((doc) => {
+  //       // console.log(doc);
+  //       const data = doc.data();
+  //       docs.push({ ...doc.data() });
+  //     });
 
-      docs.find((invoice) => {
-        if (invoice.id === idLocation) {
-          setActualInvoice(invoice);
-        }
-      });
-    });
+  //     docs.find((invoice) => {
+  //       if (invoice.id === idLocation) {
+  //         setActualInvoice(invoice);
+  //         setInvoice(invoice);
+  //       }
+  //     });
+  //   });
+  // };
+
+  const getInvoiceById = async (id) => {
+    const doc = await db.collection("invoices").doc(id).get();
+    setActualInvoice({ ...doc.data() });
+    setInvoice({ ...doc.data() });
   };
 
   return (
@@ -141,7 +154,9 @@ export const ModalProvider = ({ children }) => {
         generateId,
         actualInvoice,
         setActualInvoice,
-        getActualInvoice,
+        getInvoiceById,
+        resetActualInvoice,
+        resetInvoice,
       }}
     >
       {children}
