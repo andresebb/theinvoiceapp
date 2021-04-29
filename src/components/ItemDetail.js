@@ -12,21 +12,33 @@ const ItemDetail = ({ data }) => {
     setInvoice,
     actualInvoice,
   } = useContext(ModalContext);
+
   const check = useRef(null);
+  const totalText = useRef(null);
+
+  console.log(data);
 
   useEffect(() => {
-    PrintItemFromFirebase();
-  }, [data]);
+    getTotalText();
+  }, []);
 
-  //Quedamos aqui, mira el context en el navegador,se agrefo al itemofList pero no se elimina
+  const getTotalText = () => {
+    if (data) {
+      totalText.current.textContent = data.price;
+    }
+  };
 
-  const PrintItemFromFirebase = () => {
+  useEffect(() => {
+    addToListOfItemFromFirebase();
+  }, []);
+
+  // //Quedamos aqui, mira el context en el navegador,se agrefo al itemofList pero no se elimina
+
+  const addToListOfItemFromFirebase = () => {
     if (data != undefined) {
       addItemToList(data.name, data.qty, data.price, data.total);
     }
   };
-
-  console.log(data);
 
   const [form, setForm] = useState({
     itemName: "",
@@ -73,11 +85,14 @@ const ItemDetail = ({ data }) => {
       e.target.parentElement.parentElement.parentElement.parentElement
         .parentElement.parentElement.firstChild.lastChild.value;
 
+    console.log(itemName);
+
     //Delete from ListOfItems
     const oficialItems = listOfItem.filter((item) => {
+      // debugger;
       return item.name !== itemName;
     });
-    // setInvoice({ ...invoice, itemList: oficialItems });
+    setInvoice({ ...invoice, itemList: oficialItems });
     setListOfItem(oficialItems);
 
     // Restar grandTotal from listOfItem
@@ -117,6 +132,7 @@ const ItemDetail = ({ data }) => {
                     type="number"
                     name="itemQty"
                     onChange={onchange}
+                    value={data.qty}
                   />
                 </div>
                 <div>
@@ -126,6 +142,7 @@ const ItemDetail = ({ data }) => {
                     type="number"
                     name="itemPrice"
                     onChange={onchange}
+                    value={data.price}
                   />
                 </div>
                 <div>
@@ -135,7 +152,9 @@ const ItemDetail = ({ data }) => {
                     </p>
                   </div>
                   <div className="total-continer">
-                    <p className="info-text-bold">{form.itemTotal}</p>
+                    <p ref={totalText} className="info-text-bold">
+                      {form.itemTotal}
+                    </p>
                     <div className="action-container">
                       <button type="submit" className="send-check">
                         <i ref={check} className="fas fa-check-double"></i>

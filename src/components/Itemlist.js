@@ -40,21 +40,9 @@ const Itemlist = () => {
       <div className="itemList">
         <h3>Item List</h3>
         <div>
-          {numberOfItems.map(({ id }) => (
-            <ItemDetail key={id} />
-          ))}
-
-          {actualInvoice ? (
-            <>
-              {actualInvoice.itemList.map((data) => (
-                <ItemDetail data={data} />
-              ))}
-            </>
-          ) : (
-            <>
-              <p>Chao</p>
-            </>
-          )}
+          {actualInvoice
+            ? actualInvoice.itemList.map((data) => <ItemDetail data={data} />)
+            : numberOfItems.map(({ id }) => <ItemDetail key={id} />)}
         </div>
       </div>
       <button className="btn-large" onClick={addItem}>

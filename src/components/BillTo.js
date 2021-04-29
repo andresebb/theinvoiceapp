@@ -134,7 +134,7 @@ const BillTo = () => {
                   value={payOption}
                   name="billToTerms"
                   onClick={handleVisibility}
-                  defaultValue={actualInvoice.billToTerms}
+                  // value={actualInvoice.billToTerms}
                 />
                 <img src={ArrowDown} alt="" ref={arrow} />
               </div>
