@@ -1,9 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
+import { ModalContext } from "../context";
+
 import "../assets/styles/invoice.css";
 
 const Invoice = ({ data }) => {
   const [date, setDate] = useState(data.billToDate);
   const [time, setTime] = useState(null);
+  const [expireNumber, setExpireNumber] = useState(0);
+  const fechaActual = new Date(date.seconds * 1000);
 
   const status = useRef(null);
   const punto = useRef(null);
@@ -12,6 +16,25 @@ const Invoice = ({ data }) => {
     // setDate(date.seconds);
     setTime(new Date(date.seconds * 1000).toDateString());
   }, []);
+
+  useEffect(() => {
+    getExpireNumber();
+  }, []);
+
+  const getExpireNumber = () => {
+    if (data.billToTerms === "Net one week") {
+      setExpireNumber(7);
+    } else if (data.billToTerms === "Net 15 days") {
+      setExpireNumber(15);
+    } else if (data.billToTerms === "Net 30 days") {
+      setExpireNumber(30);
+    }
+  };
+
+  const sumarDias = (fecha, dias) => {
+    fecha.setDate(fecha.getDate() + dias);
+    return fecha.toDateString();
+  };
 
   if (status.current != null) {
     switch (status.current.className) {
@@ -41,7 +64,10 @@ const Invoice = ({ data }) => {
       </div>
       <div className="invoice-status">
         <div>
-          <p className="info-text">Due {time}</p>
+          <p className="info-text bold">
+            Due {sumarDias(fechaActual, expireNumber)}
+            <p className="big-date"></p>
+          </p>
           <p className="invoice-money">$ {data.grandTotal}</p>
         </div>
         <div ref={status} className={`status ${data.status}`}>

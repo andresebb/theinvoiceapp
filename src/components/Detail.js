@@ -19,11 +19,6 @@ const Detail = ({ data }) => {
     getExpireNumber();
   }, []);
 
-  const sumarDias = (fecha, dias) => {
-    fecha.setDate(fecha.getDate() + dias);
-    return fecha.toDateString();
-  };
-
   const getExpireNumber = () => {
     if (data.billToTerms === "Net one week") {
       setExpireNumber(7);
@@ -32,6 +27,11 @@ const Detail = ({ data }) => {
     } else if (data.billToTerms === "Net 30 days") {
       setExpireNumber(30);
     }
+  };
+
+  const sumarDias = (fecha, dias) => {
+    fecha.setDate(fecha.getDate() + dias);
+    return fecha.toDateString();
   };
 
   return (

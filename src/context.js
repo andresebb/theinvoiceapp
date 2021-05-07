@@ -30,6 +30,7 @@ export const ModalProvider = ({ children }) => {
   const [listOfItem, setListOfItem] = useState([]);
   const [numberOfItems, setNumberOfItems] = useState([{ id: "1" }]);
   const [actualInvoice, setActualInvoice] = useState(null);
+  const [dueDate, setDueDate] = useState(null);
 
   const [invoice, setInvoice] = useState({
     id: "",
@@ -166,6 +167,8 @@ export const ModalProvider = ({ children }) => {
         resetInvoice,
         getActualInvoice,
         getInvoiceById,
+        setDueDate,
+        dueDate,
       }}
     >
       {children}
