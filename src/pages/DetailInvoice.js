@@ -8,7 +8,7 @@ import Modal from "../components/Modal";
 import { Link } from "react-router-dom";
 
 const DetailInvoice = () => {
-  const { show, setShow, actualInvoice, getInvoiceById } = useContext(
+  const { show, setShow, actualInvoice, getActualInvoice } = useContext(
     ModalContext
   );
 
@@ -16,7 +16,7 @@ const DetailInvoice = () => {
   const idLocation = location[1];
 
   useEffect(() => {
-    getInvoiceById(idLocation);
+    getActualInvoice(idLocation);
   }, []);
 
   return (

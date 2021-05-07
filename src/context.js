@@ -48,6 +48,7 @@ export const ModalProvider = ({ children }) => {
     billToDescription: "",
     itemList: [],
     grandTotal: 0,
+    idOfFirebase: null,
     status: "Pending",
   });
 
@@ -113,25 +114,32 @@ export const ModalProvider = ({ children }) => {
     return result;
   };
 
-  // const getActualInvoice = (idLocation) => {
-  //   db.collection("invoices").onSnapshot((querySnapshot) => {
-  //     const docs = [];
-  //     querySnapshot.forEach((doc) => {
-  //       // console.log(doc);
-  //       const data = doc.data();
-  //       docs.push({ ...doc.data() });
-  //     });
+  //ERROR ESTAMOS OBTENIENDO MAL EL IDOFIFREBASE.
+  //No me aparece en el context.
+  const getActualInvoice = (idLocation) => {
+    db.collection("invoices").onSnapshot((querySnapshot) => {
+      const docs = [];
+      querySnapshot.forEach((doc) => {
+        setInvoice({
+          ...invoice,
+          idOfFirebase: doc.id,
+        });
+        const data = doc.data();
+        docs.push({ ...doc.data(), idFirebase: doc.id });
+      });
 
-  //     docs.find((invoice) => {
-  //       if (invoice.id === idLocation) {
-  //         setActualInvoice(invoice);
-  //         setInvoice(invoice);
-  //       }
-  //     });
-  //   });
-  // };
+      docs.find((invoice) => {
+        if (invoice.id === idLocation) {
+          setActualInvoice(invoice);
+          setInvoice(invoice);
+        }
+      });
+    });
+  };
 
   const getInvoiceById = async (id) => {
+    debugger;
+
     const doc = await db.collection("invoices").doc(id).get();
     setActualInvoice({ ...doc.data() });
     setInvoice({ ...doc.data() });
@@ -154,9 +162,10 @@ export const ModalProvider = ({ children }) => {
         generateId,
         actualInvoice,
         setActualInvoice,
-        getInvoiceById,
         resetActualInvoice,
         resetInvoice,
+        getActualInvoice,
+        getInvoiceById,
       }}
     >
       {children}

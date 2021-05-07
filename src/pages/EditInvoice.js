@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import "../assets/styles/newInvoice.css";
 import GoBack from "../components/GoBack";
 import BillFrom from "../components/BillFrom";
@@ -8,22 +9,32 @@ import { ModalContext } from "../context";
 import { db } from "../firebase";
 
 const EditInvoice = () => {
-  const { actualInvoice, resetInvoice, invoice, getInvoiceById } = useContext(
-    ModalContext
-  );
+  const {
+    actualInvoice,
+    resetInvoice,
+    invoice,
+    getActualInvoice,
+    idOfFirebase,
+    getInvoiceById,
+  } = useContext(ModalContext);
 
   const location = window.location.pathname.split(":");
   const idLocation = location[1];
+  let history = useHistory();
 
   useEffect(() => {
-    getInvoiceById(idLocation);
+    getActualInvoice(idLocation);
   }, []);
 
   //Edit invoice on the firestore
   const handleEditInvoice = async () => {
     try {
-      await db.collection("invoices").doc(actualInvoice.id).update(invoice);
-      console.log("todo bien");
+      await db
+        .collection("invoices")
+        .doc(actualInvoice.idFirebase)
+        .update(invoice);
+
+      history.push("/");
       resetInvoice();
     } catch (e) {
       console.log(e);

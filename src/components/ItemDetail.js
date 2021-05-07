@@ -16,8 +16,6 @@ const ItemDetail = ({ data }) => {
   const check = useRef(null);
   const totalText = useRef(null);
 
-  console.log(data);
-
   useEffect(() => {
     getTotalText();
   }, []);
