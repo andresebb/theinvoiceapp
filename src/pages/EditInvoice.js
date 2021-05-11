@@ -14,8 +14,7 @@ const EditInvoice = () => {
     resetInvoice,
     invoice,
     getActualInvoice,
-    idOfFirebase,
-    getInvoiceById,
+    setInvoice,
   } = useContext(ModalContext);
 
   const location = window.location.pathname.split(":");
@@ -33,7 +32,19 @@ const EditInvoice = () => {
         .collection("invoices")
         .doc(actualInvoice.idFirebase)
         .update(invoice);
+      history.push("/");
+      resetInvoice();
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
+  const markAsDraft = async () => {
+    try {
+      await db
+        .collection("invoices")
+        .doc(actualInvoice.idFirebase)
+        .update({ ...invoice, status: "Draft" });
       history.push("/");
       resetInvoice();
     } catch (e) {
@@ -54,7 +65,9 @@ const EditInvoice = () => {
           </div>
           <div className="option">
             <button className="btn">Discard</button>
-            <button className="btn black">Save as Draf</button>
+            <button className="btn black" onClick={markAsDraft}>
+              Save as Draf
+            </button>
             <button className="btn morado" onClick={handleEditInvoice}>
               Save & Update
             </button>

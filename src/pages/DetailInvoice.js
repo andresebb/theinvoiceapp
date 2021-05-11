@@ -6,18 +6,44 @@ import StatusBox from "../components/StatusBox";
 import { ModalContext } from "../context";
 import Modal from "../components/Modal";
 import { Link } from "react-router-dom";
+import { db } from "../firebase";
+import { useHistory } from "react-router-dom";
 
 const DetailInvoice = () => {
-  const { show, setShow, actualInvoice, getActualInvoice } = useContext(
-    ModalContext
-  );
+  const {
+    show,
+    setShow,
+    actualInvoice,
+    getActualInvoice,
+    invoice,
+    resetInvoice,
+  } = useContext(ModalContext);
 
   const location = window.location.pathname.split(":");
   const idLocation = location[1];
+  let history = useHistory();
 
   useEffect(() => {
     getActualInvoice(idLocation);
   }, []);
+
+  //PROBLEMA: AGARRA AL SEGUNDO CLICK
+  const markAsPaid = () => {
+    EditInvoiceToFirebase();
+  };
+
+  const EditInvoiceToFirebase = async () => {
+    try {
+      await db
+        .collection("invoices")
+        .doc(actualInvoice.idFirebase)
+        .update({ ...invoice, status: "Paid" });
+      history.push("/");
+      resetInvoice();
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <>
@@ -34,7 +60,9 @@ const DetailInvoice = () => {
               <button className="btn danger" onClick={() => setShow(true)}>
                 Delete
               </button>
-              <button className="btn morado">Mark as Paid</button>
+              <button className="btn morado" onClick={markAsPaid}>
+                Mark as paid
+              </button>
             </div>
             {show ? <Modal /> : <div></div>}
           </>
