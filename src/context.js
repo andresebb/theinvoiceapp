@@ -115,8 +115,6 @@ export const ModalProvider = ({ children }) => {
     return result;
   };
 
-  //ERROR ESTAMOS OBTENIENDO MAL EL IDOFIFREBASE.
-  //No me aparece en el context.
   const getActualInvoice = (idLocation) => {
     db.collection("invoices").onSnapshot((querySnapshot) => {
       const docs = [];

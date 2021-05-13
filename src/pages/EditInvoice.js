@@ -9,13 +9,8 @@ import { ModalContext } from "../context";
 import { db } from "../firebase";
 
 const EditInvoice = () => {
-  const {
-    actualInvoice,
-    resetInvoice,
-    invoice,
-    getActualInvoice,
-    setInvoice,
-  } = useContext(ModalContext);
+  const { actualInvoice, resetInvoice, invoice, getActualInvoice, setInvoice } =
+    useContext(ModalContext);
 
   const location = window.location.pathname.split(":");
   const idLocation = location[1];

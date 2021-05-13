@@ -27,18 +27,13 @@ const DetailInvoice = () => {
     getActualInvoice(idLocation);
   }, []);
 
-  //PROBLEMA: AGARRA AL SEGUNDO CLICK
-  const markAsPaid = () => {
-    EditInvoiceToFirebase();
-  };
-
-  const EditInvoiceToFirebase = async () => {
+  const markAsPaid = async () => {
     try {
       await db
         .collection("invoices")
         .doc(actualInvoice.idFirebase)
         .update({ ...invoice, status: "Paid" });
-      history.push("/");
+      // history.push("/");
       resetInvoice();
     } catch (e) {
       console.log(e);
@@ -60,9 +55,9 @@ const DetailInvoice = () => {
               <button className="btn danger" onClick={() => setShow(true)}>
                 Delete
               </button>
-              <button className="btn morado" onClick={markAsPaid}>
+              <Link to="/" className="btn morado" onClick={markAsPaid}>
                 Mark as paid
-              </button>
+              </Link>
             </div>
             {show ? <Modal /> : <div></div>}
           </>
