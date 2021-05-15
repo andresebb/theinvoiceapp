@@ -29,18 +29,45 @@
 
 .invoice-right {
   display: flex;
+  align-items: center;
 }
 
 .filter-container {
   display: flex;
   align-items: center;
   margin-right: 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .filter-container p {
   margin-right: 12px;
   font-weight: bold;
   font-size: 12px;
+}
+
+.filter-container-mayor {
+  position: relative;
+}
+
+.container-status {
+  background: white;
+  position: absolute;
+  box-shadow: 1px 7px 10px 1px lightgrey;
+  padding: 4px;
+  border-radius: 6px;
+  right: 6px;
+  display: none;
+}
+
+.filter-status-item {
+  display: flex;
+  align-items: center;
+}
+.filter-status-item p {
+  font-size: 12px;
+  margin: 6px;
 }
 
 .plus {

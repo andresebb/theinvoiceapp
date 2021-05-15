@@ -6,6 +6,18 @@ import PlusIcon from "../assets/images/icon-plus.svg";
 
 const CreateFilter = () => {
   const selector = useRef();
+  const statusFilter = useRef();
+  const arrow = useRef();
+
+  const openFilterStatus = () => {
+    if (statusFilter.current.style.display === "block") {
+      statusFilter.current.style.display = "none";
+      arrow.current.style.transform = "rotate(0deg)";
+    } else {
+      statusFilter.current.style.display = "block";
+      arrow.current.style.transform = "rotate(180deg)";
+    }
+  };
 
   return (
     <div className="create-invoice">
@@ -15,10 +27,25 @@ const CreateFilter = () => {
           <p>No invoices</p>
         </div>
         <div className="invoice-right">
-          <div></div>
-          <div className="filter-container">
-            <p>Filter</p>
-            <img src={ArrowDown} alt="" />
+          <div className="filter-container-mayor">
+            <button onClick={openFilterStatus} className="filter-container">
+              <p>Filter</p>
+              <img ref={arrow} src={ArrowDown} alt="" />
+            </button>
+            <div ref={statusFilter} className="container-status">
+              <div className="filter-status-item">
+                <input type="checkbox" name="" id="" />
+                <p>Pending</p>
+              </div>
+              <div className="filter-status-item">
+                <input type="checkbox" name="" id="" />
+                <p>Paid</p>
+              </div>
+              <div className="filter-status-item">
+                <input type="checkbox" name="" id="" />
+                <p>Draft</p>
+              </div>
+            </div>
           </div>
           <div className="new-container">
             <Link to="/new" className="plus">
