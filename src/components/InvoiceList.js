@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Invoice from "./Invoice";
 import Empty from "./Empty";
 import { db } from "../firebase";
 import { Link } from "react-router-dom";
+import { ModalContext } from "../context";
 
 const InvoiceList = () => {
-  const [invoices, setInvoices] = useState([]);
+  const { invoices, setInvoices } = useContext(ModalContext);
 
   useEffect(() => {
     getInvoices();
