@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import "../assets/styles/newInvoice.css";
 import GoBack from "../components/GoBack";
@@ -59,7 +60,9 @@ const EditInvoice = () => {
             <Itemlist />
           </div>
           <div className="option">
-            <button className="btn">Discard</button>
+            <Link to="/" className="btn discard">
+              Discard
+            </Link>
             <button className="btn black" onClick={markAsDraft}>
               Save as Draf
             </button>

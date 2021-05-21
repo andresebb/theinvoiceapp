@@ -49,7 +49,7 @@ const DetailInvoice = () => {
             <StatusBox state={actualInvoice.status} />
             <Detail data={actualInvoice} />
             <div className="option dos">
-              <Link to={`/edit:${actualInvoice.id}`} className="btn ">
+              <Link to={`/edit:${actualInvoice.id}`} className="btn discard">
                 Edit
               </Link>
               <button className="btn danger" onClick={() => setShow(true)}>

@@ -52,7 +52,9 @@ const NewInvoice = () => {
         <Itemlist />
       </div>
       <div className="option">
-        <button className="btn">Discard</button>
+        <Link to="/" className="btn discard">
+          Discard
+        </Link>
         <button className="btn black">Save as Draf</button>
         <Link className="btn morado" to="/" onClick={addNewInvoice}>
           Save & Send
