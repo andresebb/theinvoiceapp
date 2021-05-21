@@ -15,10 +15,6 @@ const Detail = ({ data }) => {
     setTime(new Date(date.seconds * 1000).toDateString());
   }, [date]);
 
-  useEffect(() => {
-    getExpireNumber();
-  }, []);
-
   const getExpireNumber = () => {
     if (data.billToTerms === "Net one week") {
       setExpireNumber(7);
@@ -28,6 +24,9 @@ const Detail = ({ data }) => {
       setExpireNumber(30);
     }
   };
+  useEffect(() => {
+    getExpireNumber();
+  }, []);
 
   const sumarDias = (fecha, dias) => {
     fecha.setDate(fecha.getDate() + dias);

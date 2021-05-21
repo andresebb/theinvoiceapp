@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import Invoice from "./Invoice";
 import Empty from "./Empty";
 import { db } from "../firebase";
@@ -31,9 +31,11 @@ const InvoiceList = () => {
         <Empty />
       ) : (
         invoices.map((invoice) => (
-          <Link to={`detail:${invoice.id}`}>
-            <Invoice key={invoice.id} data={invoice} />
-          </Link>
+          <div key={invoice.id}>
+            <Link to={`detail:${invoice.id}`}>
+              <Invoice key={invoice.id} data={invoice} />
+            </Link>
+          </div>
         ))
       )}
     </div>

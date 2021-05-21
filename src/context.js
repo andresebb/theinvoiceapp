@@ -1,6 +1,5 @@
 //Creando el contexto
-import React, { createContext, useEffect, useState } from "react";
-import { setDefaultLocale } from "react-datepicker";
+import React, { createContext, useState } from "react";
 import { db } from "./firebase";
 
 export const ModalContext = createContext();
@@ -124,7 +123,6 @@ export const ModalProvider = ({ children }) => {
           ...invoice,
           idOfFirebase: doc.id,
         });
-        const data = doc.data();
         docs.push({ ...doc.data(), idFirebase: doc.id });
       });
 
@@ -138,8 +136,6 @@ export const ModalProvider = ({ children }) => {
   };
 
   const getInvoiceById = async (id) => {
-    debugger;
-
     const doc = await db.collection("invoices").doc(id).get();
     setActualInvoice({ ...doc.data() });
     setInvoice({ ...doc.data() });

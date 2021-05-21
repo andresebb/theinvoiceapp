@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from "react";
+import React, { useContext } from "react";
 import ItemDetail from "./ItemDetail";
 import { ModalContext } from "../context";
 import "../assets/styles/itemList.css";
@@ -9,9 +9,8 @@ const list = {
 };
 
 const Itemlist = () => {
-  const { numberOfItems, setNumberOfItems, actualInvoice } = useContext(
-    ModalContext
-  );
+  const { numberOfItems, setNumberOfItems, actualInvoice } =
+    useContext(ModalContext);
 
   const addItem = (e) => {
     let vin = generateId();

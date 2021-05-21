@@ -7,9 +7,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const BillTo = () => {
-  const { invoice, handleInputChange, setInvoice, actualInvoice } = useContext(
-    ModalContext
-  );
+  const { invoice, handleInputChange, setInvoice, actualInvoice } =
+    useContext(ModalContext);
   const [payOption, setPayOption] = useState();
   const [startDate, setStartDate] = useState(new Date());
 
@@ -20,8 +19,6 @@ const BillTo = () => {
   useEffect(() => {
     setInvoice({ ...invoice, billToDate: startDate });
   }, [startDate]);
-
-  const getDate = () => {};
 
   const handlePaymentOption = (e) => {
     let option = e.target.textContent;

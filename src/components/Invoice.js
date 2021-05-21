@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from "react";
-import { ModalContext } from "../context";
 
 import "../assets/styles/invoice.css";
 
@@ -66,7 +65,6 @@ const Invoice = ({ data }) => {
         <div>
           <p className="info-text bold">
             Due {sumarDias(fechaActual, expireNumber)}
-            <p className="big-date"></p>
           </p>
           <p className="invoice-money">$ {data.grandTotal}</p>
         </div>

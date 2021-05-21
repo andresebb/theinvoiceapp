@@ -7,8 +7,7 @@ import { ModalContext } from "../context";
 import { db } from "../firebase";
 
 const CreateFilter = () => {
-  const { invoices, setInvoices } = useContext(ModalContext);
-  const originalInvoices = invoices;
+  const { setInvoices } = useContext(ModalContext);
 
   const [estados, setEstados] = useState({
     Pending: false,
@@ -16,13 +15,8 @@ const CreateFilter = () => {
     Draft: false,
   });
 
-  const selector = useRef();
   const statusFilter = useRef();
   const arrow = useRef();
-
-  const [Paid, setPaid] = useState(false);
-  const [Pending, setPending] = useState(false);
-  const [Draft, setDraft] = useState(false);
 
   const openFilterStatus = () => {
     if (statusFilter.current.style.display === "block") {
@@ -43,35 +37,6 @@ const CreateFilter = () => {
     const filtrados = Object.keys(estados).filter((x) => estados[x]);
 
     getInvoicesFiltrados(filtrados);
-
-    // const invoicesABuscar = invoices.filter((invoice) => {
-    //   return (
-    //     invoice.status === filtrados[0] && invoices.status === filtrados[1]
-    //   );
-    // });
-
-    // debugger;
-
-    // invoicesABuscar.indexOf("Paid")
-
-    // console.log(jose);
-
-    //   const estado = status.target.name;
-
-    //   if (status.target.checked === true) {
-    //     const luis = originalInvoices.filter((invoice) => {
-    //       debugger;
-    //       return invoice.status === estado;
-    //     });
-
-    //     debugger;
-    //     setInvoices(luis);
-    //   }
-
-    //   if (status.target.checked === false) {
-    //     getInvoices();
-    //   }
-    // };
   };
 
   const getInvoicesFiltrados = async (filtrados) => {
@@ -129,7 +94,6 @@ const CreateFilter = () => {
               <div className="filter-status-item">
                 <input
                   type="checkbox"
-                  name=""
                   id=""
                   name="Paid"
                   onChange={filterStatusInvoices}
@@ -139,7 +103,6 @@ const CreateFilter = () => {
               <div className="filter-status-item">
                 <input
                   type="checkbox"
-                  name=""
                   id=""
                   name="Draft"
                   onChange={filterStatusInvoices}
